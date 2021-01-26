@@ -15,14 +15,26 @@
             Add new message
         </a>
     </p>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse <#if message??>show</#if>" id="collapseExample">
         <div class="card card-body">
             <form method="post" enctype="multipart/form-data">
                                     <div class="form-group mb-2">
-                                        <input type="text" class="form-control py-4 px=15" name="text" placeholder="Введите сообщение" />
+                                        <input type="text" class="form-control py-4 px=15  ${(textError??)?string('is-invalid', '')}"
+                                               value="<#if message??>${message.text}</#if>" name="text" placeholder="Введите сообщение" />
+                                        <#if textError??>
+                                        <div class="invalid-feedback">
+                                            ${textError}
+                                        </div>
+                                        </#if>
                                     </div>
                                     <div class="form-group mb-2">
-                                        <input type="text" class="form-control px=15" name="tag" placeholder="Тэг">
+                                        <input type="text" class="form-control px=15 ${(tagError??)?string('is-invalid', '')}"
+                                               value="<#if message??>${message.tag}</#if>" name="tag" placeholder="Тэг">
+                                        <#if tagError??>
+                                            <div class="invalid-feedback">
+                                                ${tagError}
+                                            </div>
+                                        </#if>
                                     </div>
                                     <div class="form-group mb-2">
                                         <div class="custom-file">

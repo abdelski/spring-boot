@@ -29,6 +29,7 @@
 
             <#if name=="unknown">
                 <@l.logout false/>
+
                 <#else>
                     <@l.logout true/>
 
